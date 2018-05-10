@@ -14,7 +14,7 @@ $options= "<option>List of the products</option>";
 if ($num_rows > 0 ) {
     
     while ( $a_row = mysqli_fetch_assoc($result) ) {
-        $options=$options."\n"."<option>".$a_row['title']."</option>";
+        $options=$options."\n"."<option>".$a_row['product_name']."</option>";
     }
  mysqli_close($link);
    

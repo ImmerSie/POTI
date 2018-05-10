@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
@@ -13,26 +12,92 @@
                     event: "mouseover",
                     heightStyle: "content"
                 });
+                
                 $("#frozenFood").accordion({
                     event: "mouseover",
-                    heightStyle: "content"
+                    heightStyle: "content",
                 });
+                
+                $("#frozenFood").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                }); 
+                
+                $("#fishFingers").accordion({
+                    event: "mouseover",
+                    heightStyle: "content",
+                    active: false,
+                    collapsible: true,
+                });
+                
+                $("#fishFingers").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                });
+                
+                $("#milkProducts").accordion({
+                    event: "mouseover",
+                    heightStyle: "content",
+                    active: false,
+                    collapsible: true,
+                });
+                
+                $("#milkProducts").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                });
+                
                 $("#freshFood").accordion({
                     event: "mouseover",
                     heightStyle: "content"
                 });
+                
+                $("#freshFood").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                });
+                
                 $("#beverages").accordion({
                     event: "mouseover",
                     heightStyle: "content"
                 });
+                
+                $("#beverages").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                });
+                
                 $("#homeHealth").accordion({
                     event: "mouseover",
                     heightStyle: "content"
                 });
+                
+                $("#homeHealth").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                });
+                
                 $("#petFood").accordion({
                     event: "mouseover",
                     heightStyle: "content"
                 });
+                
+                $("#petFood").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                });
+                
+                $(".leaf").each(function(){
+                    this.style.background = "blue";
+                    this.style.color = "white";
+                });                 
             });        
         </script>
         <style>
@@ -45,6 +110,9 @@
                 margin: 2em;
                 text-align: center;
             }
+            #currentProduct{
+                float:right;
+            }
         </style>
     </head>
     <body>
@@ -52,96 +120,121 @@
             <h3>Frozen Food</h3>
             <div id="frozenFood">
                 <h3>Fish Fingers</h3>
-                <div id="seaFood">
-                    <h3>Fish Fingers (large)</h3>
-                    <h3>Fish Fingers (small)</h3>
+                <div id="fishFingers">
+                    <h3 class="leaf">Fish Fingers (large)</h3>
+                    <div></div>
+                    <h3 class="leaf">Fish Fingers (small)</h3>
+                    <div></div>
                 </div>
                 <h3>Milk Products</h3>
                 <div id="milkProducts">
-                    <h3>Tub Ice Cream (1 litre)</h3>
-                    <h3>Tub Ice Cream (2 litre)</h3>
+                    <h3 class="leaf">Tub Ice Cream (1 litre)</h3>
+                    <div></div>
+                    <h3 class="leaf">Tub Ice Cream (2 litre)</h3>
+                    <div></div>
                 </div>
-                <h3>Shelled Prawns</h3>
+                <h3 class="leaf">Shelled Prawns</h3>
                 <div></div>
-                <h3>Hamburger Patties</h3>
+                <h3 class="leaf">Hamburger Patties</h3>
                 <div></div>
             </div>
             <h3>Fresh Food</h3>
             <div id="freshFood">
-                <h3>T'Bone Steak</h3>
-                <div></div>
                 <h3>Cheddar Cheese</h3>
                 <div>
-                    <h3>500 Gram</h3>
-                    <h3>1000 Gram</h3>
+                    <h3 class="leaf">500 Gram</h3>
+                    <h3 class="leaf">1000 Gram</h3>
                 </div>
-                <h3>Navel Oranges</h3>
+                <h3 class="leaf">T'Bone Steak</h3>
                 <div></div>
-                <h3>Bananas</h3>
+                <h3 class="leaf">Navel Oranges</h3>
                 <div></div>
-                <h3>Grapes</h3>
+                <h3 class="leaf">Bananas</h3>
                 <div></div>
-                <h3>Apples</h3>
+                <h3 class="leaf">Grapes</h3>
                 <div></div>
-                <h3>Peaches</h3>
+                <h3 class="leaf">Apples</h3>
+                <div></div>
+                <h3 class="leaf">Peaches</h3>
                 <div></div>
             </div>
             <h3>Beverages</h3>
             <div id="beverages">
                 <h3>Coffee</h3>
                 <div>
-                    <h3>200 Gram</h3>
-                    <h3>500 Gram</h3>
+                    <h3 class="leaf">200 Gram</h3>
+                    <h3 class="leaf">500 Gram</h3>
                 </div>
                 <h3>Earl Grey Tea Bags</h3>
                 <div>
-                    <h3>Pack 25</h3>
-                    <h3>Pack 100</h3>
-                    <h3>Pack 200</h3>
+                    <h3 class="leaf">Pack 25</h3>
+                    <h3 class="leaf">Pack 100</h3>
+                    <h3 class="leaf">Pack 200</h3>
                 </div>
-                <h3>Chocolate Bar</h3>
+                <h3 class="leaf">Chocolate Bar</h3>
                 <div></div>
             </div>
             <h3>Home Health</h3>
             <div id="homeHealth">
-                <h3>Bath Soap</h3>
-                <div></div>
                 <h3>Panadol</h3>
                 <div>
-                    <h3>Pack 24</h3>
-                    <h3>Bottle 50</h3>
+                    <h3 class="leaf">Pack 24</h3>
+                    <h3 class="leaf">Bottle 50</h3>
                 </div>
-                <h3>Washing Powder</h3>
-                <div></div>
                 <h3>Garbage Bags</h3>
                 <div>
-                    <h3>Small (pack 10)</h3>
-                    <h3>Large (pack 50)</h3>
+                    <h3 class="leaf">Small (pack 10)</h3>
+                    <h3 class="leaf">Large (pack 50)</h3>
                 </div>
-                <h3>Laundry Bleach</h3>
+                <h3 class="leaf">Bath Soap</h3>
+                <div></div>
+                <h3 class="leaf">Washing Powder</h3>
+                <div></div>
+                <h3 class="leaf">Laundry Bleach</h3>
                 <div></div>
             </div>
             <h3>Pet Food</h3>
             <div id="petFood">
-                <h3>Bird Food</h3>
-                <div></div>
-                <h3>Cat Food</h3>
-                <div></div>
                 <h3>Dry Dog Food</h3>
                 <div>
-                    <h3>1 kg. Pack</h3>
-                    <h3>5 kg. Pack</h3>
+                    <h3 class="leaf">1 kg. Pack</h3>
+                    <h3 class="leaf">5 kg. Pack</h3>
                 </div>
-                <h3>Fish Food</h3>
+                <h3 class="leaf">Bird Food</h3>
+                <div></div>
+                <h3 class="leaf">Cat Food</h3>
+                <div></div>
+                <h3 class="leaf">Fish Food</h3>
                 <div></div>
             </div>
         </div>
         <div id="product">
-            <h1>Online Grocery Shop</h1>
+            <h1 id="title">Online Grocery Shop</h1>
+            <button onclick="getProduct()">Get Product</button>
+            <div id="currentProduct">
+                
+            </div>
         </div>
         <div id="cart">
             
         </div>
+        
+        <script>
+            function getProduct(){
+                var xhttp;
+                
+                xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function(){
+                    if(xhttp.readyState == 4 && xhttp.status == 200){
+                        document.getElementById("currentProduct").innerHTML = xhttp.responseText;
+                    }
+                };
+                
+                xhttp.open("GET", "databaseAccessor.php", true);
+                xhttp.send();
+            }
+            
+        </script>
     </body>    
 </html>
 
