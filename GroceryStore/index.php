@@ -3,6 +3,7 @@
         <title>Grocery Store</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="shop.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -47,7 +48,10 @@
             }
         </style>
     </head>
-    <body>
+    <body>  
+        <div class="title">
+            <h1>Online Grocery Shop</h1>
+        </div>
         <div id="nav">
             <h3>Frozen Food</h3>
             <div id="frozenFood">
@@ -136,11 +140,12 @@
                 <div></div>
             </div>
         </div>
-        <div id="product">
-            <h1>Online Grocery Shop</h1>
+        <div class="window" id="product">
+            <h1>Product Information</h1>
         </div>
-        <div id="cart">
-            
+        <div class="window" id="cart">
+            <h1>Cart</h1>
+            <button class="btn">Checkout</button>
         </div>
     </body>    
 </html>
