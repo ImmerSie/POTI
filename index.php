@@ -221,11 +221,19 @@
                         <img src="test.jpg" alt="Image of Product" height="50%" style="float: left">
                     </div>
                     <div class="s2" style="float: left">
-                        <h1 class="productInfo" style="float: left; margin-bottom: 0px">Quantity:</h1>
-                        <button class="btn" type="submit" onclick="addProduct()" style="float: left">Add to Card</button>
-                    </div>
-                    <div class="s1 offsetS7">
-                        <input class="inputField" type="number" name="amount" value="1" style="float: left">
+                        <table class="productInfo">
+                            <tbody>
+                                <tr>
+                                    <td><h1 style="margin-bottom: 0;">Quantity:</h1></td>
+                                    <td><input class="inputField" type="number" name="amount" value="1"></td>
+                                </tr>
+                                <tr>
+                                    <td><button class="btn" type="submit" onclick="addProduct()" style="float: left">Add to Card</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
