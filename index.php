@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="shop.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
@@ -116,6 +117,7 @@
         </style>
     </head>
     <body>
+        <h1 class="title" id="title">Online Grocery Shop</h1>
         <div id="nav">
             <h3>Frozen Food</h3>
             <div id="frozenFood">
@@ -208,15 +210,32 @@
                 <div></div>
             </div>
         </div>
-        <div id="product">
-            <h1 id="title">Online Grocery Shop</h1>
-            <button onclick="getProduct()">Get Product</button>
+        <div class="window" id="product">
+            <h1>Product Information</h1>
+            <div class="s12">
+                <button class="btn" onclick="getProduct()">Get Product</button>
+            </div>
+            <div class="s12">
+                <div class="s6">
+                    <div class="s2 offsetS2">
+                        <img src="test.jpg" alt="Image of Product" height="50%" style="float: left">
+                    </div>
+                    <div class="s2" style="float: left">
+                        <h1 class="productInfo" style="float: left; margin-bottom: 0px">Quantity:</h1>
+                        <button class="btn" type="submit" onclick="addProduct()" style="float: left">Add to Card</button>
+                    </div>
+                    <div class="s1 offsetS7">
+                        <input class="inputField" type="number" name="amount" value="1" style="float: left">
+                    </div>
+                </div>
+            </div>
             <div id="currentProduct">
                 
             </div>
         </div>
-        <div id="cart">
-            
+        <div class="window" id="cart">
+            <h1>Shopping Cart</h1>
+            <button class="btn" onclick="checkout()">Checkout</button>
         </div>
         
         <script>
