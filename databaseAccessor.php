@@ -1,6 +1,16 @@
 <?php
 
-$link = mysqli_connect('rerun.it.uts.edu.au', 'potiro', 'pcXZb(kL', 'poti');
+$server = 'rerun.it.uts.edu.au';
+$username = 'potiro';
+$password = 'pcXZb(kL';
+$database = 'poti';
+
+$server = 'localhost:3306';
+$username = 'root';
+$password = '';
+$database = 'php';
+
+$link = mysqli_connect($server, $username, $password, $database);
 if (!$link)
    die("Could not connect to Server");
  

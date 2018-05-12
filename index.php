@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="shop.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
@@ -61,6 +62,32 @@
                     }
                 });
                 
+                $("#milkProducts").accordion({
+                    event: "mouseover",
+                    heightStyle: "content",
+                    active: false,
+                    collapsible: true,
+                });
+                
+                $("#milkProducts").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                });
+                
+                $("#cheddarCheese").accordion({
+                    event: "mouseover",
+                    heightStyle: "content",
+                    active: false,
+                    collapsible: true,
+                });
+                
+                $("#cheddarCheese").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                });
+                
                 $("#beverages").accordion({
                     event: "mouseover",
                     heightStyle: "content"
@@ -72,12 +99,77 @@
                     }
                 });
                 
+                $("#coffee").accordion({
+                    event: "mouseover",
+                    heightStyle: "content",
+                    active: false,
+                    collapsible: true,
+                });
+                
+                $("#coffee").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                });
+                
+                $("#earlGreyTea").accordion({
+                    event: "mouseover",
+                    heightStyle: "content",
+                    active: false,
+                    collapsible: true,
+                });
+                
+                $("#earlGreyTea").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                });
+                
                 $("#homeHealth").accordion({
                     event: "mouseover",
                     heightStyle: "content"
                 });
                 
                 $("#homeHealth").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                });
+                
+                $("#panadol").accordion({
+                    event: "mouseover",
+                    heightStyle: "content",
+                    active: false,
+                    collapsible: true,
+                });
+                
+                $("#panadol").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                });
+                
+                $("#garbageBags").accordion({
+                    event: "mouseover",
+                    heightStyle: "content",
+                    active: false,
+                    collapsible: true,
+                });
+                
+                $("#garbageBags").on("accordionbeforeactivate", function(event, ui){
+                    if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
+                        event.preventDefault();
+                    }
+                });
+                
+                $("#dogFood").accordion({
+                    event: "mouseover",
+                    heightStyle: "content",
+                    active: false,
+                    collapsible: true,
+                });
+                
+                $("#dogFood").on("accordionbeforeactivate", function(event, ui){
                     if(ui.newHeader.attr("class").indexOf("leaf") >= 0){
                         event.preventDefault();
                     }
@@ -121,101 +213,148 @@
             <div id="frozenFood">
                 <h3>Fish Fingers</h3>
                 <div id="fishFingers">
-                    <h3 class="leaf">Fish Fingers (large)</h3>
+                    <h3 class="leaf" id="1000" onclick="getProductInfo(this.id)">Fish Fingers (large)</h3>
                     <div></div>
-                    <h3 class="leaf">Fish Fingers (small)</h3>
+                    <h3 class="leaf" id="1001" onclick="getProductInfo(this.id)">Fish Fingers (small)</h3>
                     <div></div>
                 </div>
                 <h3>Milk Products</h3>
                 <div id="milkProducts">
-                    <h3 class="leaf">Tub Ice Cream (1 litre)</h3>
+                    <h3 class="leaf" id="1004" onclick="getProductInfo(this.id)">Tub Ice Cream (1 litre)</h3>
                     <div></div>
-                    <h3 class="leaf">Tub Ice Cream (2 litre)</h3>
+                    <h3 class="leaf" id="1005" onclick="getProductInfo(this.id)">Tub Ice Cream (2 litre)</h3>
                     <div></div>
                 </div>
-                <h3 class="leaf">Shelled Prawns</h3>
+                <h3 class="leaf" id="1006" onclick="getProductInfo(this.id)">Shelled Prawns</h3>
                 <div></div>
-                <h3 class="leaf">Hamburger Patties</h3>
+                <h3 class="leaf" id="1003" onclick="getProductInfo(this.id)">Hamburger Patties</h3>
                 <div></div>
             </div>
             <h3>Fresh Food</h3>
             <div id="freshFood">
                 <h3>Cheddar Cheese</h3>
-                <div>
-                    <h3 class="leaf">500 Gram</h3>
-                    <h3 class="leaf">1000 Gram</h3>
+                <div id="cheddarCheese">
+                    <h3 class="leaf" id="3000" onclick="getProductInfo(this.id)">500 Gram</h3>
+                    <div></div>
+                    <h3 class="leaf" id="3001" onclick="getProductInfo(this.id)">1000 Gram</h3>
+                    <div></div>
                 </div>
-                <h3 class="leaf">T'Bone Steak</h3>
+                <h3 class="leaf" id="3002" onclick="getProductInfo(this.id)">T'Bone Steak</h3>
                 <div></div>
-                <h3 class="leaf">Navel Oranges</h3>
+                <h3 class="leaf" id="3003" onclick="getProductInfo(this.id)">Navel Oranges</h3>
                 <div></div>
-                <h3 class="leaf">Bananas</h3>
+                <h3 class="leaf" id="3004" onclick="getProductInfo(this.id)">Bananas</h3>
                 <div></div>
-                <h3 class="leaf">Grapes</h3>
+                <h3 class="leaf" id="3005" onclick="getProductInfo(this.id)">Grapes</h3>
                 <div></div>
-                <h3 class="leaf">Apples</h3>
+                <h3 class="leaf" id="3006" onclick="getProductInfo(this.id)">Apples</h3>
                 <div></div>
-                <h3 class="leaf">Peaches</h3>
+                <h3 class="leaf" id="3007" onclick="getProductInfo(this.id)">Peaches</h3>
                 <div></div>
             </div>
             <h3>Beverages</h3>
             <div id="beverages">
                 <h3>Coffee</h3>
-                <div>
-                    <h3 class="leaf">200 Gram</h3>
-                    <h3 class="leaf">500 Gram</h3>
+                <div id="coffee">
+                    <h3 class="leaf" id="4003" onclick="getProductInfo(this.id)">200 Gram</h3>
+                    <div></div>
+                    <h3 class="leaf" id="4004" onclick="getProductInfo(this.id)">500 Gram</h3>
+                    <div></div>
                 </div>
                 <h3>Earl Grey Tea Bags</h3>
-                <div>
-                    <h3 class="leaf">Pack 25</h3>
-                    <h3 class="leaf">Pack 100</h3>
-                    <h3 class="leaf">Pack 200</h3>
+                <div id="earlGreyTea">
+                    <h3 class="leaf" id="4000" onclick="getProductInfo(this.id)">Pack 25</h3>
+                    <div></div>
+                    <h3 class="leaf" id="4001" onclick="getProductInfo(this.id)">Pack 100</h3>
+                    <div></div>
+                    <h3 class="leaf" id="4002" onclick="getProductInfo(this.id)">Pack 200</h3>
+                    <div></div>
                 </div>
-                <h3 class="leaf">Chocolate Bar</h3>
+                <h3 class="leaf" id="4005" onclick="getProductInfo(this.id)">Chocolate Bar</h3>
                 <div></div>
             </div>
             <h3>Home Health</h3>
             <div id="homeHealth">
                 <h3>Panadol</h3>
-                <div>
-                    <h3 class="leaf">Pack 24</h3>
-                    <h3 class="leaf">Bottle 50</h3>
+                <div id="panadol">
+                    <h3 class="leaf" id="2000" onclick="getProductInfo(this.id)">Pack 24</h3>
+                    <div></div>
+                    <h3 class="leaf" id="2001" onclick="getProductInfo(this.id)">Bottle 50</h3>
+                    <div></div>
                 </div>
                 <h3>Garbage Bags</h3>
-                <div>
-                    <h3 class="leaf">Small (pack 10)</h3>
-                    <h3 class="leaf">Large (pack 50)</h3>
+                <div id="garbageBags">
+                    <h3 class="leaf" id="2003" onclick="getProductInfo(this.id)">Small (pack 10)</h3>
+                    <div></div>
+                    <h3 class="leaf" id="2004" onclick="getProductInfo(this.id)">Large (pack 50)</h3>
+                    <div></div>
                 </div>
-                <h3 class="leaf">Bath Soap</h3>
+                <h3 class="leaf" id="2002" onclick="getProductInfo(this.id)">Bath Soap</h3>
                 <div></div>
-                <h3 class="leaf">Washing Powder</h3>
+                <h3 class="leaf" id="2005" onclick="getProductInfo(this.id)">Washing Powder</h3>
                 <div></div>
-                <h3 class="leaf">Laundry Bleach</h3>
+                <h3 class="leaf" id="2006" onclick="getProductInfo(this.id)">Laundry Bleach</h3>
                 <div></div>
             </div>
             <h3>Pet Food</h3>
             <div id="petFood">
                 <h3>Dry Dog Food</h3>
-                <div>
-                    <h3 class="leaf">1 kg. Pack</h3>
-                    <h3 class="leaf">5 kg. Pack</h3>
+                <div id="dogFood">
+                    <h3 class="leaf" id="5000" onclick="getProductInfo(this.id)">1 kg. Pack</h3>
+                    <div></div>
+                    <h3 class="leaf" id="5001" onclick="getProductInfo(this.id)">5 kg. Pack</h3>
+                    <div></div>
                 </div>
-                <h3 class="leaf">Bird Food</h3>
+                <h3 class="leaf" id="5002" onclick="getProductInfo(this.id)">Bird Food</h3>
                 <div></div>
-                <h3 class="leaf">Cat Food</h3>
+                <h3 class="leaf" id="5003" onclick="getProductInfo(this.id)">Cat Food</h3>
                 <div></div>
-                <h3 class="leaf">Fish Food</h3>
+                <h3 class="leaf" id="5004" onclick="getProductInfo(this.id)">Fish Food</h3>
                 <div></div>
             </div>
         </div>
-        <div id="product">
-            <h1 id="title">Online Grocery Shop</h1>
-            <button onclick="getProduct()">Get Product</button>
-            <div id="currentProduct">
-                
+        <div class="window" id="product">
+            <h1>Product Information</h1>
+            <div class="s12">
+                <button class="btn" onclick="getProduct()">Get Product</button>
+            </div>
+            <div class="s12">
+                <div class="s6">
+                    <!--<div class="s2 offsetS2">
+                        <img src="test.jpg" alt="Image of Product" height="50%" style="float: left">
+                    </div>-->
+                    <div class="s4" style="float: left">
+                        <h1 style="text-align: left; margin: 26% 0 0 0; visibility: hidden" id="productTitle">Test</h1>
+                        <table style="float: left">
+                            <tbody>
+                                <tr>
+                                    <td><h1 class="no-margin" style="float: left" id="price">$0.50</h1></td>
+                                </tr>
+                                <tr>
+                                    <td><h2 id="quantity" class="no-margin hidden">Quantity:</h2></td>
+                                    <td><input id="input" class="inputField hidden" type="number" name="amount" value="1"></td>
+                                </tr>
+                                <tr id="addBtn">
+                                    <td><button class="btn" type="submit" onclick="addProduct()" style="float: left">Add to Cart</button></td>
+                                </tr>
+                                <tr id="remBtn" style="display: none">
+                                    <td><button class="btn" type="submit" onclick="removeProduct()" style="float: left">Remove</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="cart">
+        </div>
+        </div>
+        
+        <div id="currentProduct">
+            
+        <div class="window" id="cart">
+            <h1>Shopping Cart</h1>
+            <button class="btn" onclick="checkout()">Checkout</button>
+        </div>
             
         </div>
         
@@ -232,6 +371,25 @@
                 
                 xhttp.open("GET", "databaseAccessor.php", true);
                 xhttp.send();
+            }
+            
+            function getProductInfo(name) {
+                document.getElementById("productTitle").style.visibility = "visible";
+                document.getElementById("productTitle").innerHTML = name;
+            }
+            
+            function addProduct() {
+                document.getElementById("quantity").style.display = "block";
+                document.getElementById("input").style.display = "block";
+                document.getElementById("addBtn").style.display = "none";
+                document.getElementById("remBtn").style.display = "block";
+            }
+            
+            function removeProduct() {
+                document.getElementById("quantity").style.display = "none";
+                document.getElementById("input").style.display = "none";
+                document.getElementById("addBtn").style.display = "block";
+                document.getElementById("remBtn").style.display = "none";
             }
             
         </script>
