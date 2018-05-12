@@ -208,6 +208,7 @@
         </style>
     </head>
     <body>
+        <h1 class="title" id="title">Online Grocery Shop</h1>
         <div id="nav">
             <h3>Frozen Food</h3>
             <div id="frozenFood">
@@ -342,20 +343,15 @@
                                 </tr>
                             </tbody>
                         </table>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-        </div>
-        
-        <div id="currentProduct">
-            
+            <div id="currentProduct">
         <div class="window" id="cart">
             <h1>Shopping Cart</h1>
             <button class="btn" onclick="checkout()">Checkout</button>
-        </div>
-            
         </div>
         
         <script>
