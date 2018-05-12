@@ -19,7 +19,7 @@
     display: inline-block;
     height: 36px;
     line-height: 36px;
-    padding: 0 2rem;
+    padding: 0 15px;
     vertical-align: middle;
     background-color: #007fff;
     color: white;
@@ -78,12 +78,12 @@ s11 {
 }
 
 .productInfo {
-    margin-top: 63%;
+    margin-top: 26%;
 }
 
 .inputField {
     max-width: 75%;
-    font-size: 150%;
+    font-size: 125%;
 }
 
 .no-margin {
@@ -136,4 +136,8 @@ s11 {
 
 .offsetS1 {
     padding-left: 8.333333333333333%;
+}
+
+.hidden {
+    display: none;
 }

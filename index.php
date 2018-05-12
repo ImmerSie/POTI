@@ -123,16 +123,16 @@
             <div id="frozenFood">
                 <h3>Fish Fingers</h3>
                 <div id="fishFingers">
-                    <h3 class="leaf">Fish Fingers (large)</h3>
+                    <h3 onclick="getProductInfo('Large Fish Fingers')" class="leaf">Fish Fingers (large)</h3>
                     <div></div>
-                    <h3 class="leaf">Fish Fingers (small)</h3>
+                    <h3 onclick="getProductInfo('Small Fish Fingers')" class="leaf">Fish Fingers (small)</h3>
                     <div></div>
                 </div>
                 <h3>Milk Products</h3>
                 <div id="milkProducts">
-                    <h3 class="leaf">Tub Ice Cream (1 litre)</h3>
+                    <h3 onclick="getProductInfo('1 Litre Tub Ice Cream')" class="leaf">Tub Ice Cream (1 litre)</h3>
                     <div></div>
-                    <h3 class="leaf">Tub Ice Cream (2 litre)</h3>
+                    <h3 onclick="getProductInfo('2 Litre Tub Ice Cream')" class="leaf">Tub Ice Cream (2 litre)</h3>
                     <div></div>
                 </div>
                 <h3 class="leaf">Shelled Prawns</h3>
@@ -220,15 +220,22 @@
                     <div class="s2 offsetS2">
                         <img src="test.jpg" alt="Image of Product" height="50%" style="float: left">
                     </div>
-                    <div class="s2" style="float: left">
-                        <table class="productInfo">
+                    <div class="s4" style="float: left">
+                        <h1 style="text-align: left; margin: 26% 0 0 0" id="productTitle">Test</h1>
+                        <table style="float: left">
                             <tbody>
                                 <tr>
-                                    <td><h1 style="margin-bottom: 0;">Quantity:</h1></td>
-                                    <td><input class="inputField" type="number" name="amount" value="1"></td>
+                                    <td><h1 class="no-margin" style="float: left" id="price">$0.50</h1></td>
                                 </tr>
                                 <tr>
-                                    <td><button class="btn" type="submit" onclick="addProduct()" style="float: left">Add to Card</button></td>
+                                    <td><h2 id="quantity" class="no-margin hidden">Quantity:</h2></td>
+                                    <td><input id="input" class="inputField hidden" type="number" name="amount" value="1"></td>
+                                </tr>
+                                <tr id="addBtn">
+                                    <td><button class="btn" type="submit" onclick="addProduct()" style="float: left">Add to Cart</button></td>
+                                </tr>
+                                <tr id="remBtn" style="display: none">
+                                    <td><button class="btn" type="submit" onclick="removeProduct()" style="float: left">Remove</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -259,6 +266,24 @@
                 
                 xhttp.open("GET", "databaseAccessor.php", true);
                 xhttp.send();
+            }
+            
+            function getProductInfo(name) {
+                document.getElementById("productTitle").innerHTML = name;
+            }
+            
+            function addProduct() {
+                document.getElementById("quantity").style.display = "block";
+                document.getElementById("input").style.display = "block";
+                document.getElementById("addBtn").style.display = "none";
+                document.getElementById("remBtn").style.display = "block";
+            }
+            
+            function removeProduct() {
+                document.getElementById("quantity").style.display = "none";
+                document.getElementById("input").style.display = "none";
+                document.getElementById("addBtn").style.display = "block";
+                document.getElementById("remBtn").style.display = "none";
             }
             
         </script>
