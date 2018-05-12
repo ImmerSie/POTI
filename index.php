@@ -221,7 +221,7 @@
                         <img src="test.jpg" alt="Image of Product" height="50%" style="float: left">
                     </div>
                     <div class="s4" style="float: left">
-                        <h1 style="text-align: left; margin: 26% 0 0 0" id="productTitle">Test</h1>
+                        <h1 style="text-align: left; margin: 26% 0 0 0; visibility: hidden" id="productTitle">Test</h1>
                         <table style="float: left">
                             <tbody>
                                 <tr>
@@ -269,6 +269,7 @@
             }
             
             function getProductInfo(name) {
+                document.getElementById("productTitle").style.visibility = "visible";
                 document.getElementById("productTitle").innerHTML = name;
             }
             
