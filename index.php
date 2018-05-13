@@ -320,33 +320,21 @@
                 <button class="btn" onclick="getProduct()">Get Product</button>
             </div>
             <div class="s12">
-                <div class="s6">
-                    <!--<div class="s2 offsetS2">
-                        <img src="test.jpg" alt="Image of Product" height="50%" style="float: left">
-                    </div>-->
-                    <div class="s4" style="float: left">
-                        <h1 style="text-align: left; margin: 26% 0 0 0; visibility: hidden" id="productTitle">Test</h1>
-                        <table style="float: left">
-                            <tbody>
-                                <tr>
-                                    <td><h1 class="no-margin" style="float: left" id="price">$0.50</h1></td>
-                                </tr>
-                                <tr>
-                                    <td><h2 id="quantity" class="no-margin hidden">Quantity:</h2></td>
-                                    <td><input id="input" class="inputField hidden" type="number" name="amount" value="1"></td>
-                                </tr>
-                                <tr id="addBtn">
-                                    <td><button class="btn" type="submit" onclick="addProduct()" style="float: left">Add to Cart</button></td>
-                                </tr>
-                                <tr id="remBtn" style="display: none">
-                                    <td><button class="btn" type="submit" onclick="removeProduct()" style="float: left">Remove</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </div>
-                        
-                    </div>
+                <h1 style="visibility: hidden" id="productTitle">Test</h1>
+                <h1 class="no-margin" id="price">$0.50</h1>
+                <div style="padding-left: 44.9%">
+                    <table>
+                        <tr>
+                            <td>
+                                <h2 id="quantity" class="no-margin invisible">Quantity:</h2>
+                            </td>
+                            <td>
+                                <input id="input" class="inputField invisible" type="number" name="amount" value="1">
+                            </td>
+                        </tr>
+                    </table>
                 </div>
+                <button id="addBtn" class="btn" type="submit" onclick="addProduct()">Add to Cart</button>
             </div>
             <div id="currentProduct">
         <div class="window" id="cart">
@@ -369,23 +357,24 @@
                 xhttp.send();
             }
             
-            function getProductInfo(name) {
+            function getProductInfo(id) {
                 document.getElementById("productTitle").style.visibility = "visible";
+                var name = document.getElementById(id).textContent;
                 document.getElementById("productTitle").innerHTML = name;
             }
             
             function addProduct() {
-                document.getElementById("quantity").style.display = "block";
-                document.getElementById("input").style.display = "block";
-                document.getElementById("addBtn").style.display = "none";
-                document.getElementById("remBtn").style.display = "block";
-            }
-            
-            function removeProduct() {
-                document.getElementById("quantity").style.display = "none";
-                document.getElementById("input").style.display = "none";
-                document.getElementById("addBtn").style.display = "block";
-                document.getElementById("remBtn").style.display = "none";
+                var btn = document.getElementById("addBtn").textContent;
+                if (btn === "Add to Cart") {
+                    document.getElementById("quantity").style.visibility = "visible";
+                    document.getElementById("input").style.visibility = "visible";
+                    document.getElementById("addBtn").innerHTML = "Remove from Cart";
+                }
+                else {
+                    document.getElementById("quantity").style.visibility = "hidden";
+                    document.getElementById("input").style.visibility = "hidden";
+                    document.getElementById("addBtn").innerHTML = "Add to Cart";
+                }
             }
             
         </script>

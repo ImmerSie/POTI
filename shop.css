@@ -138,6 +138,6 @@ s11 {
     padding-left: 8.333333333333333%;
 }
 
-.hidden {
-    display: none;
+.invisible {
+    visibility: hidden;
 }
