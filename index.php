@@ -361,16 +361,6 @@
                                     </tr>
                                 </tbody>
                             </table>
-
-                            <!--<table style="text-align: left; width:100%">
-                                <tbody>
-                                    
-                                   
-                                    <tr id="remBtn" style="display: none">
-                                        <td><button class="btn" type="submit" onclick="removeProduct()" style="float: left">Remove</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>-->
                         </div>
                     </div>
 
@@ -381,7 +371,7 @@
                 </td>
             </tr>
         </table>
-                
+             
         <script>
             function getProduct(name){
                 var xhttp;
@@ -404,24 +394,25 @@
                 xhttp.send();
             }
             
-            function getProductInfo(name) {
+            function getProductInfo(id) {
                 document.getElementById("productTitle").style.visibility = "visible";
+                var name = document.getElementById(id).textContent;
                 document.getElementById("productTitle").innerHTML = name;
                 getProduct(name);
             }
             
             function addProduct() {
-                document.getElementById("quantity").style.display = "block";
-                document.getElementById("input").style.display = "block";
-                document.getElementById("addBtn").style.display = "none";
-                document.getElementById("remBtn").style.display = "block";
-            }
-            
-            function removeProduct() {
-                document.getElementById("quantity").style.display = "none";
-                document.getElementById("input").style.display = "none";
-                document.getElementById("addBtn").style.display = "block";
-                document.getElementById("remBtn").style.display = "none";
+                var btn = document.getElementById("addBtn").textContent;
+                if (btn === "Add to Cart") {
+                    document.getElementById("quantity").style.visibility = "visible";
+                    document.getElementById("input").style.visibility = "visible";
+                    document.getElementById("addBtn").innerHTML = "Remove from Cart";
+                }
+                else {
+                    document.getElementById("quantity").style.visibility = "hidden";
+                    document.getElementById("input").style.visibility = "hidden";
+                    document.getElementById("addBtn").innerHTML = "Add to Cart";
+                }
             }
             
         </script>
