@@ -344,15 +344,15 @@
                                         <td><h3 id="productTitle"></h3></td>
                                     </tr>
                                     <tr>
-                                        <td><h3>Price</h3></td>
+                                        <td><h3>Price:</h3></td>
                                         <td><h3 id="productPrice"></h3></td>
                                     </tr>
                                     <tr>
-                                        <td><h3>Unit Quantity</h3></td>
+                                        <td><h3>Unit Quantity:</h3></td>
                                         <td><h3 id="unitQuantity"></h3></td>
                                     </tr>
                                     <tr>
-                                        <td><h3>Current Stock</h3></td>
+                                        <td><h3>Current Stock:</h3></td>
                                         <td><h3 id="stock"></h3></td>
                                     </tr>
                                     <tr>
@@ -383,7 +383,7 @@
                             </thead>
                             <tbody id="cartBody"></tbody>
                         </table>
-                        <button class="btn" onclick="checkout()">Checkout</button>
+                        <button class="btn" onclick="checkout()" href="purchaseForm.php">Checkout</button>
                     </div>
                 </td>
             </tr>

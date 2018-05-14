@@ -153,3 +153,7 @@ s11 {
 .invisible {
     visibility: hidden;
 }
+
+.requiredInput {
+    color: red;
+}

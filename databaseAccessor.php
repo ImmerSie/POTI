@@ -5,10 +5,10 @@ $username = 'potiro';
 $password = 'pcXZb(kL';
 $database = 'poti';
 
-$server = 'localhost:3306';
-$username = 'root';
-$password = '';
-$database = 'php';
+//$server = 'localhost:3306';
+//$username = 'root';
+//$password = '';
+//$database = 'php';
 
 $id = $_GET['id'];
 
