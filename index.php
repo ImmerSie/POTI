@@ -215,6 +215,10 @@
                 white-space: nowrap;
                 margin-right: 20px
             }
+            
+            th {
+                white-space: nowrap;
+            }
         </style>
     </head>
     <body>
@@ -353,7 +357,7 @@
                                     </tr>
                                     <tr>
                                         <td style="vertical-align: middle"><h3 id="quantity">Quantity:</h3></td>
-                                        <td style="vertical-align: middle"><input id="input" type="number" name="amount" value="1" ></td>
+                                        <td style="vertical-align: middle"><input id="quantityInput" type="number" name="amount" value="1" ></td>
                                     </tr>
                                      <tr>
                                         <td></td>
@@ -367,6 +371,16 @@
                     <div id="cart">
                         <h1>Shopping Cart</h1>
                         <table>
+                            <thead id="cartHead" style="visibility: hidden">
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Product Title</th>
+                                    <th>Product Quantity</th>
+                                    <th>Number of Items</th>
+                                    <th>Product Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
                             <tbody id="cartBody"></tbody>
                         </table>
                         <button class="btn" onclick="checkout()">Checkout</button>
@@ -405,21 +419,39 @@
             }
             
             function addProduct(){
+                $("#cartHead").css("visibility", "visible");
+                var id = $("#productId").text();
+                var found = 0;
                 $("#cartBody tr").each(function(i, row){
-                    console.log(i, row);
+                    if($(this).html().indexOf(id) != -1){
+                        found = 1;
+                        var quantityElement = $(this).children("#cartPNo");
+                        $(quantityElement).html(parseInt(quantityElement.html()) + parseInt($("#quantityInput").val()));
+                        
+                        var price = parseFloat($(this).children("#cartPPrice").html().substring(1));
+                        console.log("Price " + price);
+                        var quantity = parseInt($(this).children("#cartPNo").html());
+                        console.log("quantity " + quantity);
+                        var currentPrice = parseFloat($(this).children("#productTotal").html().substring(1));
+                        var total = price * quantity;
+                        $(this).children("#productTotal").html(total.toFixed(2));
+                    }
                 });
-                    
-                var product = $("#cartBody").html();
-                product = product + "<tr id=\"cartP" + $("#productId").text() + "\">";
-                product = product + "<td id=\"cartPId\">" + $("#productId").text() + "</td>";
-                product = product + "<td id=\"cartPTitle\">" + $("#productTitle").text() + "</td>";
-                product = product + "<td id=\"cartPPrice\">" + $("#productPrice").text() + "</td>";
-                product = product + "<td id=\"cartPQuanity\">" + $("#unitQuantity").text() + "</td>";
-                product = product + "<td id=\"cartPStock\">" + $("#stock").text() + "</td>";
-                product = product + "</tr>";
                 
-                
-                $("#cartBody").html(product);
+                if(found == 0){
+                    var product = $("#cartBody").html();
+                    product = product + "<tr id=\"cartP" + $("#productId").text() + "\">";
+                    product = product + "<td id=\"cartPId\">" + $("#productId").text() + "</td>";
+                    product = product + "<td id=\"cartPTitle\">" + $("#productTitle").text() + "</td>";
+                    product = product + "<td id=\"cartPQuanity\">" + $("#unitQuantity").text() + "</td>";
+                    product = product + "<td id=\"cartPNo\">" + $("#quantityInput").val() + "</td>";
+                    product = product + "<td id=\"cartPPrice\">" + $("#productPrice").text() + "</td>";
+                    var total =  parseFloat($("#productPrice").text().substring(1)) * parseInt($("#quantityInput").val());
+                    product = product + "<td id=\"productTotal\">$" + total.toFixed(2) + "</td>";
+                    product = product + "</tr>";
+
+                    $("#cartBody").html(product);
+                }
             }
             
             /*function addProduct() {
