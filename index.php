@@ -333,31 +333,31 @@
                     <div id="product" style="width:100%">
                         <h2>Product Information</h1>
                         <div>
-                            <table id="infoTable" style="visibility: hidden">
+                            <table id="infoTable">
                                 <tbody>
                                     <tr>
-                                        <td><h2 id="productId"></h3></td>
-                                        <td><h2 id="productTitle"></h1></td>
+                                        <td><h3 id="productId"></h3></td>
+                                        <td><h3 id="productTitle"></h3></td>
                                     </tr>
                                     <tr>
-                                        <td><h2>Price</h2></td>
-                                        <td><h2 id="productPrice"></h2></td>
+                                        <td><h3>Price</h3></td>
+                                        <td><h3 id="productPrice"></h3></td>
                                     </tr>
                                     <tr>
-                                        <td><h2>Unit Quantity</h2></td>
-                                        <td><h2 id="unitQuantity"></h2></td>
+                                        <td><h3>Unit Quantity</h3></td>
+                                        <td><h3 id="unitQuantity"></h3></td>
                                     </tr>
                                     <tr>
-                                        <td><h2>Current Stock</h2></td>
-                                        <td><h2 id="stock"></h2></td>
+                                        <td><h3>Current Stock</h3></td>
+                                        <td><h3 id="stock"></h3></td>
                                     </tr>
                                     <tr>
-                                        <td style="vertical-align: middle"><h2 id="quantity">Quantity:</h2></td>
+                                        <td style="vertical-align: middle"><h3 id="quantity">Quantity:</h3></td>
                                         <td style="vertical-align: middle"><input id="input" type="number" name="amount" value="1" ></td>
                                     </tr>
-                                     <tr id="addBtn">
+                                     <tr>
                                         <td></td>
-                                        <td><button class="btn" type="submit" onclick="addProduct()">Add to Cart</button></td>
+                                        <td><button onclick="addProduct()">Add to Cart</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -366,13 +366,16 @@
 
                     <div id="cart">
                         <h1>Shopping Cart</h1>
+                        <table>
+                            <tbody id="cartBody"></tbody>
+                        </table>
                         <button class="btn" onclick="checkout()">Checkout</button>
                     </div>
                 </td>
             </tr>
         </table>
              
-        <script>
+        <script>           
             function getProduct(name){
                 var xhttp;
                 
@@ -383,7 +386,7 @@
                         var detailsArray = product.split(",");
                         document.getElementById("infoTable").style.visibility = "visible";
                         document.getElementById("productId").innerHTML = "#" + detailsArray[0];
-                        document.getElementById("productTitle").innerHTML = " - " + detailsArray[1];
+                        document.getElementById("productTitle").innerHTML = detailsArray[1];
                         document.getElementById("productPrice").innerHTML = "$" + detailsArray[2];
                         document.getElementById("unitQuantity").innerHTML = detailsArray[3];
                         document.getElementById("stock").innerHTML = detailsArray[4];
@@ -395,13 +398,31 @@
             }
             
             function getProductInfo(id) {
-                document.getElementById("productTitle").style.visibility = "visible";
-                var name = document.getElementById(id).textContent;
-                document.getElementById("productTitle").innerHTML = name;
-                getProduct(name);
+                //document.getElementById("productTitle").style.visibility = "visible";
+                //var name = document.getElementById(id).textContent;
+                //document.getElementById("productTitle").innerHTML = name;
+                getProduct(id);
             }
             
-            function addProduct() {
+            function addProduct(){
+                $("#cartBody tr").each(function(i, row){
+                    console.log(i, row);
+                });
+                    
+                var product = $("#cartBody").html();
+                product = product + "<tr id=\"cartP" + $("#productId").text() + "\">";
+                product = product + "<td id=\"cartPId\">" + $("#productId").text() + "</td>";
+                product = product + "<td id=\"cartPTitle\">" + $("#productTitle").text() + "</td>";
+                product = product + "<td id=\"cartPPrice\">" + $("#productPrice").text() + "</td>";
+                product = product + "<td id=\"cartPQuanity\">" + $("#unitQuantity").text() + "</td>";
+                product = product + "<td id=\"cartPStock\">" + $("#stock").text() + "</td>";
+                product = product + "</tr>";
+                
+                
+                $("#cartBody").html(product);
+            }
+            
+            /*function addProduct() {
                 var btn = document.getElementById("addBtn").textContent;
                 if (btn === "Add to Cart") {
                     document.getElementById("quantity").style.visibility = "visible";
@@ -413,8 +434,9 @@
                     document.getElementById("input").style.visibility = "hidden";
                     document.getElementById("addBtn").innerHTML = "Add to Cart";
                 }
-            }
+            }*/
             
+            window.onload = getProductInfo("1000");
         </script>
     </body>    
 </html>
