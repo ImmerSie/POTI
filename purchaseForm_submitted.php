@@ -17,11 +17,10 @@
                 
                 $to = $_REQUEST['email'];
                 $subject = "Order Placed";
-                $message = "Hello ".$_REQUEST['name'].", your order has been placed.";
+                $message = "Hello ".$_REQUEST['name'].", your order has been placed and will be delivered to ".$_REQUEST['address']." ".$_REQUEST['state']." ".$_REQUEST['country'];
                 $headers = "From: admin@onlinegrocerystore.com";
                 mail($to, $subject, $message, $headers);
             ?>
         </p>
-        <button class="btn" onclick="purchase()">Purchase</button>
     </body>
 </html>

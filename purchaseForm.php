@@ -56,7 +56,7 @@
                     <td><input type="text" id="submittedEmail" name="email"></td>
                 </tr>
                 <tr>
-                    <td><button type="submit" value="Submit">Submit</button></td>
+                    <td><button type="submit" value="Submit">Purchase</button></td>
                 </tr>
             </table>
         </form>
