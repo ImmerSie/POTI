@@ -213,16 +213,17 @@
             }
             td {
                 white-space: nowrap;
-                margin-right: 20px
+                padding-right: 20px;
             }
             
             th {
                 white-space: nowrap;
+                padding-right: 30px;
             }
         </style>
     </head>
     <body>
-        <table style="width: 100%">
+        <table id="bodyTable" style="width: 100%">
             <tr>
                 <td id="tdNav">
                     <div id="nav">
@@ -242,9 +243,9 @@
                                 <h3 class="leaf" id="1005" onclick="getProductInfo(this.id)">Tub Ice Cream (2 litre)</h3>
                                 <div></div>
                             </div>
-                            <h3 class="leaf" id="1006" onclick="getProductInfo(this.id)">Shelled Prawns</h3>
+                            <h3 class="leaf" id="1003" onclick="getProductInfo(this.id)">Shelled Prawns</h3>
                             <div></div>
-                            <h3 class="leaf" id="1003" onclick="getProductInfo(this.id)">Hamburger Patties</h3>
+                            <h3 class="leaf" id="1002" onclick="getProductInfo(this.id)">Hamburger Patties</h3>
                             <div></div>
                         </div>
                         <h3>Fresh Food</h3>
@@ -361,7 +362,7 @@
                                     </tr>
                                      <tr>
                                         <td></td>
-                                        <td><button onclick="addProduct()">Add to Cart</button></td>
+                                        <td><button id="addBtn" onclick="addProduct()">Add to Cart</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -370,7 +371,7 @@
 
                     <div id="cart">
                         <h1>Shopping Cart</h1>
-                        <table>
+                        <table style="text-align: left">
                             <thead id="cartHead" style="visibility: hidden">
                                 <tr>
                                     <th>Product ID</th>
@@ -378,12 +379,35 @@
                                     <th>Product Quantity</th>
                                     <th>Number of Items</th>
                                     <th>Product Price</th>
-                                    <th>Total</th>
+                                    <th>Product Total</th>
                                 </tr>
                             </thead>
+                            <tfoot id="cartFoot" style="visibility: hidden">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total Price</td>
+                                    <td id="calculatedTotal"></td>
+                                </tr>
+                            </tfoot>
                             <tbody id="cartBody"></tbody>
                         </table>
-                        <button class="btn" onclick="checkout()" href="purchaseForm.php">Checkout</button>
+                        <table>
+                            <tr>
+                                <td><button onclick="emptyCart()">Clear</button></td>
+                                <td style="text-align: right"><button class="btn" onclick="checkout()">Checkout</button></td>
+                            </tr>
+                        </table>
                     </div>
                 </td>
             </tr>
@@ -411,63 +435,82 @@
                 xhttp.send();
             }
             
+            function emptyCart(){
+                console.log("Price ");
+                $("#cartHead").css("visibility", "hidden");
+                $("#cartBody").html("");
+            }
+            
             function getProductInfo(id) {
-                //document.getElementById("productTitle").style.visibility = "visible";
-                //var name = document.getElementById(id).textContent;
-                //document.getElementById("productTitle").innerHTML = name;
                 getProduct(id);
             }
             
             function addProduct(){
                 $("#cartHead").css("visibility", "visible");
+                $("#cartFoot").css("visibility", "visible");
                 var id = $("#productId").text();
                 var found = 0;
                 $("#cartBody tr").each(function(i, row){
                     if($(this).html().indexOf(id) != -1){
                         found = 1;
-                        var quantityElement = $(this).children("#cartPNo");
-                        $(quantityElement).html(parseInt(quantityElement.html()) + parseInt($("#quantityInput").val()));
-                        
-                        var price = parseFloat($(this).children("#cartPPrice").html().substring(1));
-                        console.log("Price " + price);
-                        var quantity = parseInt($(this).children("#cartPNo").html());
-                        console.log("quantity " + quantity);
-                        var currentPrice = parseFloat($(this).children("#productTotal").html().substring(1));
-                        var total = price * quantity;
-                        $(this).children("#productTotal").html(total.toFixed(2));
+                        var quantityElement = parseInt($(this).children("#cartPNo").html());
+                        var quantityInput = parseInt($("#quantityInput").val());
+                        if(quantityElement + quantityInput > 20){
+                            alert("Cannot make orders of more than 20.");
+                        } else {
+                            $(this).children("#cartPNo").html(quantityElement + quantityInput);
+
+                            var price = parseFloat($(this).children("#cartPPrice").html().substring(1));
+                            var quantity = parseInt($(this).children("#cartPNo").html());
+                            var currentPrice = parseFloat($(this).children("#productTotal").html().substring(1));
+                            var total = price * quantity;
+                            $(this).children("#productTotal").html("$" + total.toFixed(2));
+                        }
                     }
                 });
                 
                 if(found == 0){
-                    var product = $("#cartBody").html();
-                    product = product + "<tr id=\"cartP" + $("#productId").text() + "\">";
-                    product = product + "<td id=\"cartPId\">" + $("#productId").text() + "</td>";
-                    product = product + "<td id=\"cartPTitle\">" + $("#productTitle").text() + "</td>";
-                    product = product + "<td id=\"cartPQuanity\">" + $("#unitQuantity").text() + "</td>";
-                    product = product + "<td id=\"cartPNo\">" + $("#quantityInput").val() + "</td>";
-                    product = product + "<td id=\"cartPPrice\">" + $("#productPrice").text() + "</td>";
-                    var total =  parseFloat($("#productPrice").text().substring(1)) * parseInt($("#quantityInput").val());
-                    product = product + "<td id=\"productTotal\">$" + total.toFixed(2) + "</td>";
-                    product = product + "</tr>";
+                    if($("#quantityInput").val() > 20){
+                        alert("Cannot make orders of more than 20.");
+                    } else {
+                        var product = $("#cartBody").html();
+                        product = product + "<tr id=\"cartP" + $("#productId").text() + "\">";
+                        product = product + "<td id=\"cartPId\">" + $("#productId").text() + "</td>";
+                        product = product + "<td id=\"cartPTitle\">" + $("#productTitle").text() + "</td>";
+                        product = product + "<td id=\"cartPQuanity\">" + $("#unitQuantity").text() + "</td>";
+                        product = product + "<td id=\"cartPNo\">" + $("#quantityInput").val() + "</td>";
+                        product = product + "<td id=\"cartPPrice\">" + $("#productPrice").text() + "</td>";
+                        var productTotal =  parseFloat($("#productPrice").text().substring(1)) * parseInt($("#quantityInput").val());
+                        product = product + "<td id=\"productTotal\">$" + productTotal.toFixed(2) + "</td>";
+                        product = product + "</tr>";
 
-                    $("#cartBody").html(product);
+                        $("#cartBody").html(product);
+                    }
                 }
+                
+                var total = 0;
+                
+                $("#cartBody tr").each(function(i, row){
+                    total = total + parseFloat($(this).children("#productTotal").html().substring(1));
+                });
+                
+                $("#calculatedTotal").html("$" + total.toFixed(2));
             }
             
-            /*function addProduct() {
-                var btn = document.getElementById("addBtn").textContent;
-                if (btn === "Add to Cart") {
-                    document.getElementById("quantity").style.visibility = "visible";
-                    document.getElementById("input").style.visibility = "visible";
-                    document.getElementById("addBtn").innerHTML = "Remove from Cart";
-                }
-                else {
-                    document.getElementById("quantity").style.visibility = "hidden";
-                    document.getElementById("input").style.visibility = "hidden";
-                    document.getElementById("addBtn").innerHTML = "Add to Cart";
-                }
-            }*/
+            function checkout(){
+                if(document.getElementById("cartBody").childNodes.length > 0){
+                    document.getElementById("addBtn").disabled = true;
             
+                    var url = window.location.href;
+                    var splitURL = url.split("index");
+
+                    var newURL = splitURL[0] + "purchaseForm.php";
+                    window.open(newURL);
+                } else {
+                    alert("You don't have any items in your cart.");
+                }
+            }
+                        
             window.onload = getProductInfo("1000");
         </script>
     </body>    
